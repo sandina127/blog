@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Parc;
-use App\Http\Resources\ParcResource;
+use App\Ville;
 
-class ParcController extends Controller
+class VilleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,11 +14,7 @@ class ParcController extends Controller
      */
     public function index()
     {
-      return Parc::with(['gallery'=> function($q){
-                 $q->with('photos');
-               }])->get();
-     
-       
+      return Ville::with('region')->get();     
     }
 
     /**

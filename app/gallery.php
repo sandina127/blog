@@ -2,11 +2,13 @@
 
 namespace App;
 
+use App\Parc;
+use App\photos;
 use Illuminate\Database\Eloquent\Model;
 
 class gallery extends Model
 {
-    protected $fillable = ['id_parc', 'title', 'type'];
+    protected $fillable = ['parc_id', 'title', 'type'];
 
     public function parc()
     {
@@ -14,6 +16,6 @@ class gallery extends Model
     }
     public function photos()
     {
-      return $this->belongsTo(Photos::class);
+      return $this->hasMany(photos::class);
     }
 }

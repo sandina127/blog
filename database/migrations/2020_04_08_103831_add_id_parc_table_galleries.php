@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePhotosTable extends Migration
+class AddIdParcTableGalleries extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreatePhotosTable extends Migration
      */
     public function up()
     {
-        Schema::create('photos', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->unsignedBigInteger('gallery_id');
-            $table->string('picture');
-            $table->timestamps();
+        Schema::table('galleries', function (Blueprint $table) {
+           $table->foreign('parc_id')->references('id')->on('parcs')
+                 ->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
@@ -28,6 +26,8 @@ class CreatePhotosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('photos');
+        Schema::table('photos', function (Blueprint $table) {
+            $table->dropForeign(['parc_id']);
+        });
     }
 }

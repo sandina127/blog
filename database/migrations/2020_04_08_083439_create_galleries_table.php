@@ -17,7 +17,7 @@ class CreateGalleriesTable extends Migration
             $table->bigIncrements('id');
             $table->string('title');
             $table->string('type');
-            $table->unsignedInteger('id_parc');
+            $table->unsignedBigInteger('parc_id');
             $table->timestamps();
         });
     }

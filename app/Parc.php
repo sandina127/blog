@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\gallery;
 use Illuminate\Database\Eloquent\Model;
 
 class Parc extends Model
@@ -10,6 +11,6 @@ class Parc extends Model
 
     public function gallery()
     {
-      return $this->hasMany(Gallery::class);
+      return $this->hasMany(gallery::class);
     }
 }

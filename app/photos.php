@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\gallery;
 use Illuminate\Database\Eloquent\Model;
 
 class photos extends Model
@@ -10,6 +11,6 @@ class photos extends Model
 
     public function visuels()
     {
-      return $this->hasMany(Gallery::class);
+      return $this->belongsTo(gallery::class);
     }
 }
