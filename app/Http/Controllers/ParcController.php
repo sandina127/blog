@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Parc;
 use App\Http\Resources\ParcResource;
-
+use App\Type;
+use App\Http\Resources\TypeResource;
 class ParcController extends Controller
 {
     /**
@@ -15,13 +16,14 @@ class ParcController extends Controller
      */
     public function index()
     {
-        return ParcResource::collection(Parc::all());   
-      /*  $parcs=Parc::pluck('types');
+       return ParcResource::collection(Parc::all());   
+     /*   $parcs=Parc::pluck('types');
         $mes_parcs=explode("|",$parcs);
     
         $skips = ["[","]","\""];
-        return str_replace($skips, '',$mes_parcs);
-        */
+        $test= str_replace($skips, '',$mes_parcs);
+      */  
+
        
     }
 

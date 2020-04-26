@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Ville;
+use App\Type;
+use App\Http\Resources\TypeResource;
 
-class VilleController extends Controller
+class TypeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +15,9 @@ class VilleController extends Controller
      */
     public function index()
     {
-      return Ville::with('region')->get();     
+       $users=TypeResource::collection(Type::all()->pluck('type'));  
+       return $users;
+ 
     }
 
     /**

@@ -18,4 +18,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::apiResource('parc', 'ParcController');
-Route::apiResource('ville', 'VilleController');
+Route::apiResource('type', 'TypeController');
+

@@ -16,19 +16,30 @@ class ParcResource extends JsonResource
      */
     public function toArray($request)
     {
-        $typs=Parc::pluck('types');
-        $types=explode("|",$typs);
-      
 
-        $skips = ["[","]","\""];
-        $type= str_replace($skips, '',$types);
-        return [
+          return [
             'id' => $this->id,
             'name' => $this->name,
             'version' => $this->version,
             'prix' => $this->prix,
             'types' => $this->types,
-            'catgories'=> TypeResource::collection(Type::where('type',$this->types)->get()),
+            'catgories'=> TypeResource::collection(Type::get()
+           ->whereIn("type",explode("|",$this->types))->groupBy("category")),
+            
+            /*->each(function($type,$key){
+                 
+                dd($type);
+                /*
+                $types=explode("|",$this->types);
+                $skips = ["[","]","\""];
+                $Tab_type= str_replace($skips, '',$types);
+        
+                foreach ($Tab_type as $tpe) {
+                    dd($type->where("type",$tpe)->get());
+                        return $type->where("type",$tpe)->get();
+                    }
+                
+            }))*/
           ];
     }
 }
