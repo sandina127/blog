@@ -15,10 +15,13 @@ class ParcController extends Controller
      */
     public function index()
     {
-      return Parc::with(['gallery'=> function($q){
-                 $q->with('photos');
-               }])->get();
-     
+        return ParcResource::collection(Parc::all());   
+      /*  $parcs=Parc::pluck('types');
+        $mes_parcs=explode("|",$parcs);
+    
+        $skips = ["[","]","\""];
+        return str_replace($skips, '',$mes_parcs);
+        */
        
     }
 

@@ -3,7 +3,9 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-
+use App\Http\Resources\TypeResource;
+use App\Type;
+use App\Parc;
 class ParcResource extends JsonResource
 {
     /**
@@ -14,15 +16,19 @@ class ParcResource extends JsonResource
      */
     public function toArray($request)
     {
+        $typs=Parc::pluck('types');
+        $types=explode("|",$typs);
+      
+
+        $skips = ["[","]","\""];
+        $type= str_replace($skips, '',$types);
         return [
             'id' => $this->id,
-            'equipements1' => $this->equipements1,
-            'equipements2' => $this->equipements2,
+            'name' => $this->name,
+            'version' => $this->version,
             'prix' => $this->prix,
-            'gallery' => $this->gallery,
-            'created_at' => (string) $this->created_at,
-            'updated_at' => (string) $this->updated_at
-         
+            'types' => $this->types,
+            'catgories'=> TypeResource::collection(Type::where('type',$this->types)->get()),
           ];
     }
 }
